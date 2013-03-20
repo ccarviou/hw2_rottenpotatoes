@@ -10,19 +10,10 @@ class MoviesController < ApplicationController
     
 
 
-	if params[:sortid] #save the sort request
-		session[:sortid] = params[:sortid]
-	else if session[:sortid] #if params has no sortid, recall old sortid request from session
-		change = true
-		params[:sortid] = session[:sortid]
-	end
-	end
 
-	@sortid = session[:sortid] #save the sort request as a accessible local variable
+	@sortid = params[:sortid] #save the sort request as a accessible local variable
 
-	if change
-		redirect_to movies_path({:sortid=>@sortid}) #recall old sortid if member comes back from other page
-	else if
+	
 		details = {'title'=>'title', 'release_date'=>'release_date'} #create a hash to compare and see if sort request is valid
 		if details.has_key?(@sortid) #determine if sort is valid
 			mov = Movie.order(@sortid) #sort movies by valid sort type
@@ -31,8 +22,8 @@ class MoviesController < ApplicationController
 			mov = Movie  #keep old order
 		end
 			@movies = mov.all #populate the movies table with all movies referenced by mov
-	end
-	end
+
+	
 		
   end
 
