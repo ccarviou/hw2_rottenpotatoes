@@ -23,8 +23,8 @@ class MoviesController < ApplicationController
 	if change
 		redirect_to movies_path({:sortid=>@sortid}) #recall old sortid if member comes back from other page
 	else if
-		details = {'title'=>'title', 'release_date'=>'release_date'} #create a hash to compare and see if sort request is valid
-		if details.has_key?(@sortid) #determine if sort is valid
+		columns = {'title'=>'title', 'release_date'=>'release_date'} #create a hash to compare and see if sort request is valid
+		if columns.has_key?(@sortid) #determine if sort is valid
 			mov = Movie.order(details[@sortid]) #sort movies by valid sort type
 		else
 			@sortid = nil  #sort type was not valid and will not be stored
