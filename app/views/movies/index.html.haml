@@ -1,19 +1,22 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
+= form_tag movies_path, :method => :get do
+	=hidden_field_tag(:sortid, @sortid)
+
 %table#movies
-  %thead
-    %tr
-      %th Movie Title
-      %th Rating
-      %th Release Date
-      %th More Info
-  %tbody
-    - @movies.each do |movie|
-      %tr
-        %td= movie.title 
-        %td= movie.rating
-        %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)
+	%thead
+		%tr
+			%th{:class=> @sortid=='title' ? 'hilite' : ''}= link_to "Movie Title", movies_path({:sortid=>'title'}), {:id=>"title_header"} #if title sort requested color set to hilite
+			%th Rating
+			%th{:class=> @sortid == 'release_date' ? 'hilite' : ''}= link_to "Release Date", movies_path({:sortid=>'release_date'}), {:id=>"release_date_header"} #if rd sort requested color set to hilite
+			%th More Info
+	%tbody
+	- @movies.each do |movie|
+		%tr
+			%td= movie.title 
+			%td= movie.rating
+			%td= movie.release_date
+			%td= link_to "More about #{movie.title}", movie_path(movie)
 
 = link_to 'Add new movie', new_movie_path
