@@ -5,18 +5,18 @@
 	Include:
 	- @all_ratings.each do |rating| #iterate through all ratings given by controller
 		= rating
-		= check_box_tag "ratings[#{rating}]", "ratings[#{rating}]", @ratings.nil? ? false : @ratings.has_key?(rating) #save the old ratings chosen and set include all ratings if no boxes checked
+		= check_box_tag "ratings[#{rating}]", "ratings[#{rating}]", @ratings.nil? ? true : @ratings.has_key?(rating) #save the old ratings chosen and set include all ratings if no boxes checked
 	= submit_tag 'Refresh', {:id => 'ratings_submit'}
 
 %table#movies
 	%thead
 		%tr
 			%th{:class=> @sortid=='title' ? 'hilite' : ''}
-				%a= link_to "Movie Title", movies_path({:sortid=>'title'}), {:id=>"title_header"} #if title sort requested color set to hilite
+				%a= link_to "Movie Title", movies_path({:sortid=>'title', :ratings =>@ratings}), {:id=>"title_header"} #if title sort requested color set to hilite
 
 			%th Rating
 			%th{:class=> @sortid == 'release_date' ? 'hilite' : ''}
-				%a= link_to "Release Date", movies_path({:sortid=>'release_date'}), {:id=>"release_date_header"} #if rd sort requested color set to hilite
+				%a= link_to "Release Date", movies_path({:sortid=>'release_date', :ratings =>@ratings}), {:id=>"release_date_header"} #if rd sort requested color set to hilite
 
 			%th More Info
 	%tbody
