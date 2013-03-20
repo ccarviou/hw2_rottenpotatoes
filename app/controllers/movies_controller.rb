@@ -8,12 +8,9 @@ class MoviesController < ApplicationController
 
   def index
     
-
-
-
-	@sortid = params[:sortid] #save the sort request as a accessible local variable
-	mov = Movie.order(@sortid) #sort movies by valid sort type
-	@movies = mov.all #populate the movies table with all movies referenced by mov
+	@sortid = params[:sortid]
+	@movies = Movie.order(params[:sortid])
+	
 
 	
 		
