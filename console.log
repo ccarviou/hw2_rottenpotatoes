@@ -114,3 +114,8 @@
 [2013-03-20 11:09:40] INFO  WEBrick::HTTPServer#start: pid=3485 port=3000
 [2013-03-20 11:13:07] INFO  going to shutdown ...
 [2013-03-20 11:13:08] INFO  WEBrick::HTTPServer#start done.
+[2013-03-20 11:20:29] INFO  WEBrick 1.3.1
+[2013-03-20 11:20:29] INFO  ruby 1.9.2 (2011-07-09) [i686-linux]
+[2013-03-20 11:20:29] INFO  WEBrick::HTTPServer#start: pid=3537 port=3000
+[2013-03-20 11:22:55] INFO  going to shutdown ...
+[2013-03-20 11:22:55] INFO  WEBrick::HTTPServer#start done.

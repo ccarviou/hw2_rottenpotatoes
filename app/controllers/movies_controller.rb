@@ -12,16 +12,8 @@ class MoviesController < ApplicationController
 
 
 	@sortid = params[:sortid] #save the sort request as a accessible local variable
-
-	
-		details = {'title'=>'title', 'release_date'=>'release_date'} #create a hash to compare and see if sort request is valid
-		if details.has_key?(@sortid) #determine if sort is valid
-			mov = Movie.order(@sortid) #sort movies by valid sort type
-		else
-			@sortid = nil  #sort type was not valid and will not be stored
-			mov = Movie  #keep old order
-		end
-			@movies = mov.all #populate the movies table with all movies referenced by mov
+	mov = Movie.order(@sortid) #sort movies by valid sort type
+	@movies = mov.all #populate the movies table with all movies referenced by mov
 
 	
 		
