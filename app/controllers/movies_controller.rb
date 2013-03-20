@@ -8,7 +8,11 @@ class MoviesController < ApplicationController
 
   def index
     if params[:commit] == 'Refresh'  # if user refreshes reset the ratings
-		session[:ratings] = params[:ratings]
+		if params[:ratings] == nil
+			params[:ratings] = session[:ratings]
+		else
+			session[:ratings] = params[:ratings]
+		end
 	else if session[:ratings] != params[:ratings] #if the user changes the ratings they would like to see, store themi params
 		change = true
 		params[:ratings] = session[:ratings]
